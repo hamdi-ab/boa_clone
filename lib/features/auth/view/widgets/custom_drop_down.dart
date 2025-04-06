@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 class ExpandableDropdown extends StatefulWidget {
   final Widget collapsedContent; // Content shown when dropdown is collapsed
   final Widget expandedContent; // Content shown when dropdown is expanded
+  final ValueChanged<bool> onToggle; // Callback for state changes
+  final String? leftText; // Optional left-aligned text
 
   const ExpandableDropdown({
     required this.collapsedContent,
     required this.expandedContent,
+    required this.onToggle,
+    this.leftText, // Add optional left-aligned text
     super.key,
   });
 
@@ -21,36 +25,52 @@ class _ExpandableDropdownState extends State<ExpandableDropdown> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Dropdown Header with Rotating Arrow
         GestureDetector(
           onTap: () {
             setState(() {
               _isExpanded = !_isExpanded;
+              widget.onToggle(_isExpanded); // Notify parent about state change
             });
           },
           child: Padding(
-            padding:  const EdgeInsets.symmetric(horizontal: 15.0),
+            padding: const EdgeInsets.symmetric(horizontal: 18.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: widget.leftText != null
+                  ? MainAxisAlignment.spaceBetween // Space text and dropdown
+                  : MainAxisAlignment.end, // Align dropdown to the right if no leftText
               children: [
-                const Text("Select an Option", style: TextStyle(fontSize: 18),),
-                AnimatedRotation(
-                  turns: _isExpanded ? 0.5 : 0, // Rotates arrow
-                  duration: Duration(milliseconds: 300),
-                  child: Icon(Icons.keyboard_arrow_down, size: 28),
+                // Render left-aligned text if provided
+                if (widget.leftText != null)
+                  Text(
+                    widget.leftText!,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                Row(
+                  children: [
+                    const Text(
+                      "English",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    AnimatedRotation(
+                      turns: _isExpanded ? 0.5 : 0,
+                      duration: const Duration(milliseconds: 300),
+                      child: const Icon(Icons.keyboard_arrow_down, size: 28),
+                    ),
+                  ],
                 ),
               ],
             ),
           ),
         ),
-
         const SizedBox(height: 20),
-
-        // Swappable Content Section
         AnimatedSwitcher(
           duration: const Duration(milliseconds: 150),
-          switchInCurve: Curves.easeInOut,
-          switchOutCurve: Curves.easeInOut,
           child: _isExpanded ? widget.expandedContent : widget.collapsedContent,
         ),
       ],

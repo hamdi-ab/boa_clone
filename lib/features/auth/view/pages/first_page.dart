@@ -15,18 +15,23 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> {
-  bool isDropdownExpanded = false; // Tracks dropdown expansion state
-  String selectedValue = 'Option 1'; // Tracks selected dropdown value
+  bool _isExpanded = false;
+  String selectedValue = 'Option 1';
 
   @override
   Widget build(BuildContext context) {
-    return ScaffoldWidget(children: [
-      SizedBox(height: 20,),
+    return ScaffoldWidget(top: 35, bottom: 110, children: [
+      const SizedBox(height: 20,),
       ExpandableDropdown(
-        collapsedContent: CollapsedContent(), // Default content
-        expandedContent: _buildExpandedContent(), // Expanded dropdown content
+        collapsedContent: const CollapsedContent(), // Default content
+        expandedContent: _buildExpandedContent(),
+        onToggle:  (bool isExpanded) {
+          setState(() {
+            _isExpanded = isExpanded;
+          });
+        },// Expanded dropdown content
       )
-    ], top: 35, bottom: 110);
+    ]);
   }
 }
 
@@ -38,7 +43,7 @@ class CollapsedContent extends StatelessWidget {
     return Column(
       key: const ValueKey("collapsed"),
       children: [
-        SizedBox(height: 80,),
+        const SizedBox(height: 80,),
         const Text(
           'Welcome to Bank of Abyssinia Mobile',
           style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
@@ -89,7 +94,7 @@ Widget _buildExpandedContent() {
           children: [
             CustomRadioTile(
               title: "English",
-              flagIcon: Icons.flag_circle, // Replace with actual flag icons
+              countryCode: 'us', // Replace with actual flag icons
               value: "Option 1",
               groupValue: selectedOption,
               onChanged: (value) {
@@ -100,7 +105,7 @@ Widget _buildExpandedContent() {
             ),
             CustomRadioTile(
               title: "አማርኛ",
-              flagIcon: Icons.flag_circle, // Replace with actual flag icons
+              countryCode: 'et', // Replace with actual flag icons
               value: "Option 2",
               groupValue: selectedOption,
               onChanged: (value) {
@@ -111,7 +116,7 @@ Widget _buildExpandedContent() {
             ),
             CustomRadioTile(
               title: "ትግርኛ",
-              flagIcon: Icons.flag_circle, // Replace with actual flag icons
+              countryCode: 'et', // Replace with actual flag icons
               value: "Option 3",
               groupValue: selectedOption,
               onChanged: (value) {
@@ -122,7 +127,7 @@ Widget _buildExpandedContent() {
             ),
             CustomRadioTile(
               title: "Afaan Oromoo",
-              flagIcon: Icons.flag_circle, // Replace with actual flag icons
+              countryCode: 'et', // Replace with actual flag icons
               value: "Option 4",
               groupValue: selectedOption,
               onChanged: (value) {
@@ -133,7 +138,7 @@ Widget _buildExpandedContent() {
             ),
             CustomRadioTile(
               title: "Af Somali",
-              flagIcon: Icons.flag_circle, // Replace with actual flag icons
+              countryCode: 'et', // Replace with actual flag icons
               value: "Option 5",
               groupValue: selectedOption,
               onChanged: (value) {
@@ -146,8 +151,9 @@ Widget _buildExpandedContent() {
         ),
         Column(
           children: [
+            SizedBox(height: 30,),
             TransparentColorButton(text: 'Update language', onTap: (){}),
-            SizedBox(width: 10),
+            const SizedBox(height: 16),
             PrimaryColorButton(text: 'Cancel', onTap: (){}),
           ],
         )

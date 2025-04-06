@@ -1,6 +1,8 @@
 import 'package:boa_clone/core/primary_color_button.dart';
 import 'package:boa_clone/core/themes/app_palette.dart';
 import 'package:boa_clone/core/transparent_color_button.dart';
+import 'package:boa_clone/features/auth/view/pages/exchange_rate_page.dart';
+import 'package:boa_clone/features/auth/view/pages/locate_us.dart';
 import 'package:boa_clone/features/auth/view/widgets/custom_drop_down.dart';
 import 'package:boa_clone/features/auth/view/widgets/custom_radio_tile.dart';
 import 'package:boa_clone/features/auth/view/widgets/custom_text_form_field_two.dart';
@@ -15,17 +17,105 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+  bool _isExpanded = false; // Tracks dropdown state
+
   @override
   Widget build(BuildContext context) {
-    return ScaffoldWidget(top: 0, bottom: 50, children: [
-      const SizedBox(
-        height: 20,
-      ),
-      ExpandableDropdown(
-        collapsedContent: const CollapsedContent(), // Default content
-        expandedContent: _buildExpandedContent(), // Expanded dropdown content
+    return ScaffoldWidget(
+      top: 0,
+      bottom: 50,
+      bottomNavigationBar: !_isExpanded
+          ? Container(
+        color: Colors.white,
+        padding: const EdgeInsets.symmetric(vertical: 10.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            // Location Button with Label
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.location_on_outlined, size: 30),
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const LocateUs()));
+                  },
+                ),
+                const Text(
+                  "Locate Us",
+                  style: TextStyle(fontSize: 12),
+                ),
+              ],
+            ),
+
+            // Currency Exchange Button with Label
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.currency_exchange_outlined, size: 30),
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const ExchangeRatePage()));
+                  },
+                ),
+                const Text(
+                  "Exchange Rate",
+                  style: TextStyle(fontSize: 12),
+                ),
+              ],
+            ),
+
+            // QR Code Button with Label
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.qr_code_scanner_outlined, size: 30),
+                  onPressed: () {
+                    // QR Code button action
+                  },
+                ),
+                const Text(
+                  "Verify Receipt",
+                  style: TextStyle(fontSize: 12),
+                ),
+              ],
+            ),
+
+            // Phone Call Button with Label
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.phone_in_talk_outlined, size: 30),
+                  onPressed: () {
+                    // Phone Call button action
+                  },
+                ),
+                const Text(
+                  "Support",
+                  style: TextStyle(fontSize: 12),
+                ),
+              ],
+            ),
+          ],
+        ),
       )
-    ]);
+          : null, // No navigation bar when expanded
+      children: [
+        const SizedBox(height: 20),
+        ExpandableDropdown(
+          collapsedContent: const CollapsedContent(),
+          expandedContent: _buildExpandedContent(),
+          onToggle: (bool isExpanded) {
+            setState(() {
+              _isExpanded = isExpanded;
+            });
+          },
+          leftText: 'Welcome',
+        ),
+      ], // No navigation bar when expanded
+    );
   }
 }
 
@@ -34,45 +124,57 @@ class CollapsedContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 40.0),
-      child: Column(
-        key: const ValueKey("collapsed"),
-        children: [
-          CustomTextFormFieldTwo(
-            hintText: "Enter Phone Number",
-            prefix: Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 12.0, vertical: 15.0),
-              margin: const EdgeInsets.only(
-                  right: 16.0), // Add spacing between box and input field
-              decoration: BoxDecoration(
-                  border: Border.all(color: Palette.greyColor, width: 1.0),
-                  borderRadius: const BorderRadius.only(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        // Main content
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 40.0),
+          child: Column(
+            children: [
+              CustomTextFormFieldTwo(
+                hintText: "Enter Phone Number",
+                prefix: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 15.0),
+                  margin: const EdgeInsets.only(right: 16.0),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Palette.greyColor, width: 1.0),
+                    borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(8),
-                      bottomLeft: Radius.circular(8)) // Border for the box
+                      bottomLeft: Radius.circular(8),
+                    ),
                   ),
-              child: const Text(
-                '+251', // Prefix number
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500, // Text color
+                  child: const Text(
+                    '+251',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 ),
               ),
-            ),
+              const SizedBox(height: 20.0),
+              const CustomTextFormFieldTwo(
+                hintText: 'Enter PIN',
+                prefix: null,
+              ),
+              const SizedBox(height: 50.0),
+              TransparentColorButton(
+                text: 'Login',
+                onTap: () {
+                  // Handle login action
+                },
+              ),
+            ],
           ),
-          SizedBox(height: 20.0,),
-          CustomTextFormFieldTwo(
-            hintText: 'Enter PIN',
-            prefix: null,
-          ),
-          const SizedBox(height: 50.0,),
-          TransparentColorButton(text: 'Login', onTap: (){})
-        ],
-      ),
+        ),
+
+
+      ],
     );
   }
 }
+
 
 Widget _buildExpandedContent() {
   String? selectedOption = "Option 1";
@@ -86,7 +188,7 @@ Widget _buildExpandedContent() {
           children: [
             CustomRadioTile(
               title: "English",
-              flagIcon: Icons.flag_circle, // Replace with actual flag icons
+              countryCode: 'us', // Replace with actual flag icons
               value: "Option 1",
               groupValue: selectedOption,
               onChanged: (value) {
@@ -97,7 +199,7 @@ Widget _buildExpandedContent() {
             ),
             CustomRadioTile(
               title: "አማርኛ",
-              flagIcon: Icons.flag_circle, // Replace with actual flag icons
+              countryCode: 'et', // Replace with actual flag icons
               value: "Option 2",
               groupValue: selectedOption,
               onChanged: (value) {
@@ -108,7 +210,7 @@ Widget _buildExpandedContent() {
             ),
             CustomRadioTile(
               title: "ትግርኛ",
-              flagIcon: Icons.flag_circle, // Replace with actual flag icons
+              countryCode: 'et', // Replace with actual flag icons
               value: "Option 3",
               groupValue: selectedOption,
               onChanged: (value) {
@@ -119,7 +221,7 @@ Widget _buildExpandedContent() {
             ),
             CustomRadioTile(
               title: "Afaan Oromoo",
-              flagIcon: Icons.flag_circle, // Replace with actual flag icons
+              countryCode: 'et', // Replace with actual flag icons
               value: "Option 4",
               groupValue: selectedOption,
               onChanged: (value) {
@@ -130,7 +232,7 @@ Widget _buildExpandedContent() {
             ),
             CustomRadioTile(
               title: "Af Somali",
-              flagIcon: Icons.flag_circle, // Replace with actual flag icons
+              countryCode: 'et', // Replace with actual flag icons
               value: "Option 5",
               groupValue: selectedOption,
               onChanged: (value) {
@@ -143,8 +245,9 @@ Widget _buildExpandedContent() {
         ),
         Column(
           children: [
+            SizedBox(height: 130,),
             TransparentColorButton(text: 'Update language', onTap: () {}),
-            SizedBox(width: 10),
+            SizedBox(height: 16,),
             PrimaryColorButton(text: 'Cancel', onTap: () {}),
           ],
         )

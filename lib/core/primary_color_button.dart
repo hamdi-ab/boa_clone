@@ -15,7 +15,7 @@ class PrimaryColorButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(10), // Set the border radius
             ),
             backgroundColor: Palette.primaryColor,
-            fixedSize: const Size(335, 55)),
+            fixedSize: const Size(345, 55)),
         child: Text(
           text,
           style: const TextStyle(

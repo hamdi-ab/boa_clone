@@ -1,10 +1,11 @@
 import 'package:boa_clone/core/themes/app_palette.dart';
+import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 
 class CustomRadioTile extends StatelessWidget {
-  const CustomRadioTile({super.key, required this.title, required this.flagIcon, required this.value, this.groupValue, required this.onChanged});
+  const CustomRadioTile({super.key, required this.title, required this.countryCode, required this.value, this.groupValue, required this.onChanged});
   final String title;
-  final IconData flagIcon;// Flag icon
+  final String countryCode;// Flag icon
   final String value;
   final String? groupValue;
   final ValueChanged<String?> onChanged;
@@ -16,24 +17,23 @@ class CustomRadioTile extends StatelessWidget {
       padding: const EdgeInsets.only(left: 12),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
+        color: Palette.whiteColor,
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            spreadRadius: 1,
-            blurRadius: 5,
-            offset: Offset(0, 5),
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1.5,
+            blurRadius: 6,
+            offset: Offset(0, 3),
           ),
         ],
       ),
       child: ListTile(
         contentPadding: EdgeInsets.zero,
-        leading:  SizedBox(
-          width: 50, // Set the desired width
-          height: 50, // Set the desired height (optional)
-          child: Image.asset(
-            'icons/flags/png/us.png',
-            package: 'country_icons',
-          ),
+        leading:   CountryFlag.fromCountryCode(
+          countryCode.toUpperCase(), // Ensure the country code is uppercase
+          shape: const Rectangle(), // Circular flag shape
+          height: 30,            // Flag height
+          width: 50,
         ),// Flag Icon
         title: Text(
           title,

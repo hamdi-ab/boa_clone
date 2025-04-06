@@ -16,7 +16,7 @@ class TransparentColorButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(8), // Set the border radius
             ),
             backgroundColor: Palette.lightGrey,
-            fixedSize: const Size(345, 60)),
+            fixedSize: const Size(345, 55)),
         child: Text(
           text,
           style: const TextStyle(

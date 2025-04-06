@@ -1,4 +1,5 @@
 import 'package:boa_clone/features/auth/view/pages/first_page.dart';
+import 'package:boa_clone/features/home/view/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const FirstPage(),
+      home: const HomePage(),
     );
   }
 }
