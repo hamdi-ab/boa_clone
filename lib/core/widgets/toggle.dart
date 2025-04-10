@@ -5,13 +5,15 @@ class Toggle extends StatefulWidget {
   final List<String>
   labels; // List of toggle labels (e.g., ["Cash", "Transactions"])
   final int selectedIndex; // Currently selected index
-  final Function(int) onToggle; // Callback when toggle is clicked
+  final Function(int) onToggle;
+  final  double height;
+  final double fontSize;// Callback when toggle is clicked
 
   const Toggle({
     super.key,
     required this.labels,
     required this.selectedIndex,
-    required this.onToggle,
+    required this.onToggle, required this.height, required this.fontSize,
   });
 
   @override
@@ -22,7 +24,7 @@ class _ToggleState extends State<Toggle> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 55,
+      height: widget.height,
       decoration: BoxDecoration(
         color: Colors.grey.shade300, // Background color
         borderRadius: BorderRadius.circular(16), // Rounded edges
@@ -42,7 +44,7 @@ class _ToggleState extends State<Toggle> {
                   });
                 },
                 child: Container(
-                  height: 55, // Increased button height
+                  height: widget.height, // Increased button height
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   decoration: BoxDecoration(
                     color: isSelected
@@ -54,8 +56,8 @@ class _ToggleState extends State<Toggle> {
                   alignment: Alignment.center,
                   child: Text(
                     widget.labels[index],
-                    style: const TextStyle(
-                      fontSize: 20,
+                    style:  TextStyle(
+                      fontSize: widget.fontSize,
                       color: Palette
                           .blackColor, // Change text color based on selection
                       fontWeight: FontWeight.w600,

@@ -1,5 +1,5 @@
-import 'package:boa_clone/core/primary_color_button.dart';
-import 'package:boa_clone/core/transparent_color_button.dart';
+import 'package:boa_clone/core/widgets/primary_color_button.dart';
+import 'package:boa_clone/core/widgets/transparent_color_button.dart';
 import 'package:boa_clone/features/auth/view/pages/activate_page.dart';
 import 'package:boa_clone/features/auth/view/pages/sign_in_page.dart';
 import 'package:boa_clone/features/auth/view/widgets/custom_drop_down.dart';

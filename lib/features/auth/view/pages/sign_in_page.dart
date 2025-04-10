@@ -1,11 +1,11 @@
-import 'package:boa_clone/core/primary_color_button.dart';
+import 'package:boa_clone/core/widgets/primary_color_button.dart';
 import 'package:boa_clone/core/themes/app_palette.dart';
-import 'package:boa_clone/core/transparent_color_button.dart';
+import 'package:boa_clone/core/widgets/transparent_color_button.dart';
 import 'package:boa_clone/features/auth/view/pages/exchange_rate_page.dart';
 import 'package:boa_clone/features/auth/view/pages/locate_us.dart';
 import 'package:boa_clone/features/auth/view/widgets/custom_drop_down.dart';
 import 'package:boa_clone/features/auth/view/widgets/custom_radio_tile.dart';
-import 'package:boa_clone/features/auth/view/widgets/custom_text_form_field_two.dart';
+import 'package:boa_clone/core/widgets/custom_text_form_field_two.dart';
 import 'package:boa_clone/features/auth/view/widgets/scaffold_widget.dart';
 import 'package:flutter/material.dart';
 

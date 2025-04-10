@@ -1,4 +1,4 @@
-import 'package:boa_clone/core/transparent_color_button.dart';
+import 'package:boa_clone/core/widgets/transparent_color_button.dart';
 import 'package:boa_clone/features/auth/view/widgets/custom_text_form_field.dart';
 import 'package:boa_clone/features/auth/view/widgets/scaffold_widget.dart';
 import 'package:flutter/material.dart';

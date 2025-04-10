@@ -1,6 +1,6 @@
 import 'package:boa_clone/core/themes/app_palette.dart';
 import 'package:boa_clone/features/auth/view/widgets/exchange_rate_tile.dart';
-import 'package:boa_clone/features/auth/view/widgets/toggle.dart';
+import 'package:boa_clone/core/widgets/toggle.dart';
 import 'package:flutter/material.dart';
 
 class ExchangeRatePage extends StatefulWidget {
@@ -52,6 +52,8 @@ class _ExchangeRatePageState extends State<ExchangeRatePage> {
                 height: 20,
               ),
               Toggle(
+                height: 55,
+                fontSize: 20,
                 labels: const ["Cash", "Transactions"], // Toggle labels
                 selectedIndex: selectedIndex, // Pass the current selected index
                 onToggle: (newIndex) {
