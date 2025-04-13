@@ -6,6 +6,7 @@ import 'package:boa_clone/features/auth/view/widgets/custom_drop_down.dart';
 import 'package:boa_clone/features/auth/view/widgets/custom_radio_tile.dart';
 import 'package:boa_clone/features/auth/view/widgets/scaffold_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
@@ -57,10 +58,7 @@ class CollapsedContent extends StatelessWidget {
         PrimaryColorButton(
           text: 'Activate',
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const ActivatePage()),
-            );
+            context.go('/auth/active');
           },
         ),
         const SizedBox(height: 20),
@@ -88,7 +86,7 @@ Widget _buildExpandedContent() {
   return StatefulBuilder(
     builder: (context, setState) => Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      key: ValueKey("expanded"),
+      key: const ValueKey("expanded"),
       children: [
         Column(
           children: [
@@ -151,7 +149,7 @@ Widget _buildExpandedContent() {
         ),
         Column(
           children: [
-            SizedBox(height: 30,),
+            const SizedBox(height: 20,),
             TransparentColorButton(text: 'Update language', onTap: (){}),
             const SizedBox(height: 16),
             PrimaryColorButton(text: 'Cancel', onTap: (){}),

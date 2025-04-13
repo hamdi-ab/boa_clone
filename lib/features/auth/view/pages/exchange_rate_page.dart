@@ -52,6 +52,7 @@ class _ExchangeRatePageState extends State<ExchangeRatePage> {
                 height: 20,
               ),
               Toggle(
+                borderRadius: 16,
                 height: 55,
                 fontSize: 20,
                 labels: const ["Cash", "Transactions"], // Toggle labels

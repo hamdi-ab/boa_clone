@@ -8,8 +8,8 @@ class UtilitiesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScaffold(
-      title: 'Utilitites',
+    return const CustomScaffold(
+      title: 'Utilities',
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         SizedBox(
           height: 20,
@@ -18,40 +18,58 @@ class UtilitiesPage extends StatelessWidget {
           child: Column(
             children: [
               TransferPageContainer(
-                iconData: Icons.sim_card,
+                iconWidget: Icon(
+                  Icons.swap_horiz,
+                  color: Palette.primaryColor,
+                  size: 25,
+                ),
                 title: 'Airtime Topup and package',
                 subtitle: 'Buy phone top up credit online',
-                iconSize: 25,
               ),
               TransferPageContainer(
-                iconData: Icons.account_balance,
+                iconWidget: Icon(
+                  Icons.swap_horiz,
+                  color: Palette.primaryColor,
+                  size: 25,
+                ),
                 title: 'Ethiopian Airlines',
                 subtitle: 'Pay Ethiotelecom Bills',
-                iconSize: 25,
               ),
               TransferPageContainer(
-                iconData: Icons.account_balance,
+                iconWidget: Icon(
+                  Icons.swap_horiz,
+                  color: Palette.primaryColor,
+                  size: 25,
+                ),
                 title: 'DSTV',
                 subtitle: 'Pay Your DSTV Package Payments',
-                iconSize: 25,
               ),
               TransferPageContainer(
-                iconData: Icons.account_balance,
+                iconWidget: Icon(
+                  Icons.swap_horiz,
+                  color: Palette.primaryColor,
+                  size: 25,
+                ),
                 title: 'US Visa',
                 subtitle: 'Make Payments to your internet service bills',
-                iconSize: 25,
               ),
               TransferPageContainer(
-                iconData: Icons.account_balance,
+                iconWidget: Icon(
+                  Icons.swap_horiz,
+                  color: Palette.primaryColor,
+                  size: 25,
+                ),
                 title: 'Websprix',
                 subtitle: 'Transfer and withdraw money from ATM without card',
-                iconSize: 25,
               ),
               TransferPageContainer(
-                iconData: Icons.account_balance,
+                iconWidget: Icon(
+                  Icons.swap_horiz,
+                  color: Palette.primaryColor,
+                  size: 25,
+                ),
                 title: 'Awach',
                 subtitle: 'Transfer To Awach Account',
-                iconSize: 25,
               ),
             ],
           ),

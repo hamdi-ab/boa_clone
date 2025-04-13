@@ -49,9 +49,12 @@ class ScaffoldWidget extends StatelessWidget {
                   topRight: Radius.circular(26.0),
                 ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center, // Center horizontally
-                children: children,
+              child: SingleChildScrollView(
+                physics: const NeverScrollableScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center, // Center horizontally
+                  children: children,
+                ),
               ),
             ),
           ),

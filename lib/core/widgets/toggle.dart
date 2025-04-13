@@ -7,13 +7,14 @@ class Toggle extends StatefulWidget {
   final int selectedIndex; // Currently selected index
   final Function(int) onToggle;
   final  double height;
-  final double fontSize;// Callback when toggle is clicked
+  final double fontSize;
+  final double borderRadius;// Callback when toggle is clicked
 
   const Toggle({
     super.key,
     required this.labels,
     required this.selectedIndex,
-    required this.onToggle, required this.height, required this.fontSize,
+    required this.onToggle, required this.height, required this.fontSize, required this.borderRadius,
   });
 
   @override
@@ -27,7 +28,7 @@ class _ToggleState extends State<Toggle> {
       height: widget.height,
       decoration: BoxDecoration(
         color: Colors.grey.shade300, // Background color
-        borderRadius: BorderRadius.circular(16), // Rounded edges
+        borderRadius: BorderRadius.circular(widget.borderRadius), // Rounded edges
       ),
       child: Row(
         children: List.generate(

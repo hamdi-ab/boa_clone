@@ -21,7 +21,8 @@ class TransparentColorButton extends StatelessWidget {
           text,
           style: const TextStyle(
               fontSize: 20,
-              fontWeight: FontWeight.w600,),
+              fontWeight: FontWeight.w600,
+          color: Palette.blackColor),
         ));
   }
 }

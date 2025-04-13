@@ -1,5 +1,5 @@
 import 'package:boa_clone/core/themes/app_palette.dart';
-import 'package:flutter/material.dart';// Adjust path
+import 'package:flutter/material.dart';
 
 class CustomScaffold extends StatelessWidget {
   final String title;
@@ -25,25 +25,22 @@ class CustomScaffold extends StatelessWidget {
         elevation: 0,
         actions: [
           TextButton(
-            onPressed: () {
-              Navigator.pop(context); // Default cancel behavior
-            },
+            onPressed: () => Navigator.pop(context),
             child: const Text(
               'Cancel',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Palette.blackColor),
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                color: Palette.blackColor,
+              ),
             ),
           ),
         ],
       ),
       body: Container(
-        width: double.infinity,
         decoration: const BoxDecoration(
-          color: Palette.whiteColor,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(26.0),
-            topRight: Radius.circular(26.0),
-          ),
-        ),
+            color: Palette.whiteColor,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(26))),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 26.0),
           child: child,
